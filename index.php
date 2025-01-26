@@ -35,7 +35,7 @@
         })(jQuery);
 
         $(document).ready(function() {
-            var allowedSymbols = "@#.*&():;\"',%$\-_+?!";
+            var allowedSymbols = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
             $('#textInput').validateEnglishInput(allowedSymbols);
 
             $('#inputForm').on('submit', function(e) {

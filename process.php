@@ -5,7 +5,7 @@ function validateEnglishInput($input, $allowedCharacters) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'validate') {
-    $allowedSymbols = "@#.*&():;\"',%$\-_+?!";
+    $allowedSymbols = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
     $input = $_POST['input'] ?? '';
     if (validateEnglishInput($input, $allowedSymbols)) {
         $data = ['input' => $input];
