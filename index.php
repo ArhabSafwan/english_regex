@@ -25,14 +25,14 @@
     <script>
         (function($) {
             $.fn.validateEnglishInput = function(allowedCharacters) {
-                var regex = new RegExp('^[a-zA-Z0-9\s' + allowedCharacters + ']*$');
+                var regex = new RegExp('^[a-zA-Z0-9\\s' + allowedCharacters + ']*$');
                 var errorMessage = $('<p class="error">Only English letters, numbers, spaces, and allowed symbols are permitted.</p>');
                 this.after(errorMessage);
 
                 this.on('input', function() {
                     if (!regex.test($(this).val())) {
                         errorMessage.show();
-                        $(this).val($(this).val().replace(new RegExp('[^a-zA-Z0-9\s' + allowedCharacters + ']', 'g'), ''));
+                        $(this).val($(this).val().replace(new RegExp('[^a-zA-Z0-9\\s' + allowedCharacters + ']', 'g'), ''));
                     } else {
                         errorMessage.hide();
                     }
@@ -48,7 +48,10 @@
                         $.ajax({
                             url: 'process.php',
                             type: 'POST',
-                            data: { action: 'validate', input: inputVal },
+                            data: {
+                                action: 'validate',
+                                input: inputVal
+                            },
                             dataType: 'json',
                             success: function(response) {
                                 alert(response.message);
@@ -62,7 +65,7 @@
         })(jQuery);
 
         $(document).ready(function() {
-            var allowedSymbols = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+            var allowedSymbols = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\\\\";
             $('#textInput').validateEnglishInput(allowedSymbols);
         });
     </script>
